@@ -26,7 +26,7 @@ include_once 'DbConfig.php';
 
 
                         <?php
-				    	$where = '   ';  
+				    	$where = '   ';    
 						?>
 
                         <table class="table style-1 tbl-listings">
