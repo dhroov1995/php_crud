@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2022 at 05:58 AM
+-- Generation Time: Jun 24, 2022 at 05:39 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -48,6 +48,26 @@ INSERT INTO `tbl_adminmaster` (`intAdminID`, `vchEmail`, `vchUserName`, `vchPass
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_category`
+--
+
+CREATE TABLE `tbl_category` (
+  `id` int(11) NOT NULL,
+  `category_image` varchar(255) NOT NULL,
+  `category_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_category`
+--
+
+INSERT INTO `tbl_category` (`id`, `category_image`, `category_name`) VALUES
+(1, 'images/51OCZXJQ3mL._AC_UL320_.jpg', 'bike'),
+(2, 'images/download1.jpg', 'tv');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_contact`
 --
 
@@ -80,6 +100,8 @@ INSERT INTO `tbl_contact` (`contact_id`, `full_name`, `mobile_no`, `age`, `email
 
 CREATE TABLE `tbl_product` (
   `id` int(11) NOT NULL,
+  `product_image` varchar(255) NOT NULL,
+  `product_category` varchar(255) NOT NULL,
   `product_code` varchar(255) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_colour` varchar(255) NOT NULL,
@@ -90,9 +112,12 @@ CREATE TABLE `tbl_product` (
 -- Dumping data for table `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`id`, `product_code`, `product_name`, `product_colour`, `created_at`) VALUES
-(1, '1111', 'tv', 'black', '2022-06-20 11:22:32'),
-(9, '2222', 'mobile', 'red', '2022-06-20 22:54:30');
+INSERT INTO `tbl_product` (`id`, `product_image`, `product_category`, `product_code`, `product_name`, `product_colour`, `created_at`) VALUES
+(31, 'images/istockphoto-898449896-1024x1024.jpg', 'tv', 'sbtv22', 'tv-sm', 'black', '2022-06-21 15:04:56'),
+(32, 'images/download.jpg', 'bike', '2222', 'bike-h', 'blue', '2022-06-21 15:05:06'),
+(33, 'images/tv.jpg', 'tv', 'jdsvsv', 'tv-old', 'brown', '2022-06-21 16:26:54'),
+(34, 'images/product-500x500.jpeg', 'bike', 'new222', 'bike', 'red', '2022-06-22 22:08:40'),
+(35, 'images/tv.jpg', 'tv', 'ss25', 'tv-sm', 'black', '2022-06-22 22:30:51');
 
 --
 -- Indexes for dumped tables
@@ -103,6 +128,12 @@ INSERT INTO `tbl_product` (`id`, `product_code`, `product_name`, `product_colour
 --
 ALTER TABLE `tbl_adminmaster`
   ADD PRIMARY KEY (`intAdminID`);
+
+--
+-- Indexes for table `tbl_category`
+--
+ALTER TABLE `tbl_category`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_contact`
@@ -127,6 +158,12 @@ ALTER TABLE `tbl_adminmaster`
   MODIFY `intAdminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `tbl_category`
+--
+ALTER TABLE `tbl_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tbl_contact`
 --
 ALTER TABLE `tbl_contact`
@@ -136,7 +173,7 @@ ALTER TABLE `tbl_contact`
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

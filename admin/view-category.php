@@ -9,7 +9,7 @@ include_once 'DbConfig.php';
                 <div class="col-sm-6">
                     <div class="heds-new">
 
-                        <a href = add-product.php class="btn btn-success">Add Product</a>
+                        <a href = category.php class="btn btn-success">Add Category </a>
                     </div>
                 </div>
             </div>
@@ -33,11 +33,10 @@ include_once 'DbConfig.php';
                             <thead>
                                 <tr role="row">
                                     <th>Id</th>
-									<th>Product Image</th>
-									<th>Product Category</th>
-                                    <th>Product Code</th>
-                                    <th>Product Name</th>
-                                    <th>Product colour</th>
+									<th>category Image</th>
+                                    
+                                    <th>category Name</th>
+                                  
                                     <th>Operations</th>
                                 </tr>
                             </thead>
@@ -67,7 +66,7 @@ include_once 'DbConfig.php';
 									
 
 
-								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "product where 1=1 $where order by id desc";
+								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "category where 1=1 $where order by id desc";
 
 								$r = $crud->getData($sql);
 								$totalrecord = $numopen = $numrows = $r[0]['count'];
@@ -96,7 +95,7 @@ include_once 'DbConfig.php';
 
 								$offset = ($currentpage - 1) * $rowsperpage;
 
-								$sql = "SELECT * FROM " . TABLE_PREFIX . "product where 1=1 $where order by id desc LIMIT " . $offset . ", " . $rowsperpage . "";
+								$sql = "SELECT * FROM " . TABLE_PREFIX . "category where 1=1 $where order by id desc LIMIT " . $offset . ", " . $rowsperpage . "";
 
 								
 								$result = $crud->getData($sql);
@@ -112,37 +111,32 @@ include_once 'DbConfig.php';
                                     </td>
 									<td>
 										
-									<img src=<?php echo $obj['product_image']?>>
+									<img src=<?php echo $obj['category_image']?>>
+									
+									
 									</td>
 									
-									<td>
-									<?php echo $obj['product_category'];  ?>
-									</td>
 									<?php
 								/*	echo"<pre>";
 									print_r($obj['product_image']);
 									echo"</pre>";
 										die(); */
 									?>
-                                    <td>
-									<?php echo $obj['product_code'];  ?>
-                                    </td>
+                                   
 									
                                     <td>
 
-									<?php echo $obj['product_name'];  ?>
+									<?php echo $obj['category_name'];  ?>
                                     </td>
 
 
-                                    <td>
-									<?php echo $obj['product_colour'];  ?>
-                                    </td>
+                                   
 
 									<td>
 										
-									 <a href ="update-product.php?id=<?php echo $obj[id]; ?>" class="btn btn-success mr-3">Update
+									 <a href ="update-category.php?id=<?php echo $obj[id]; ?>" class="btn btn-success mr-3">Update
 								
-									 <a href ="delete-product.php?id=<?php echo $obj[id]; ?>" class="btn btn-danger">Delete
+									 <a href ="delete-category.php?id=<?php echo $obj[id]; ?>" class="btn btn-danger">Delete
 									</td>
                                 
 

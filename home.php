@@ -1,72 +1,47 @@
-<?php require("admin-header.php");
-include_once 'DbConfig.php';
+<?php require "header.php";
 
+include_once 'include/DbConfig.php';
 ?>
-<div class="content-wrapper">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <div class="heds-new">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+	.test
+{
+	border:4px solid lime;
+	
+        background-color:coral;
+		text-align: center;
+        margin:0px auto;
+        padding:30px;
+		text:center;
+		height: 20%;
+		width:auto;
+        border-radius:4px;
+		height: 40%;
+}
+.row
+{
+	height: 100px;
+  width: 100%;
+}
+</style>
 
-                        <a href = add-product.php class="btn btn-success">Add Product</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
-    <!-- Main content -->
-    <section class="content nw-list">
-        <div class="row d-flex align-items-stretch">
-            <div class="col-lg-12">
-                <div class="card-body listing-list">
-                    <div class="table-tabs w-100 float-left">
-
+<div class ="container mt-5">
+<div class="test">
+	<h2>Product Listing</h2>
+	</div>
+<div class ="row mt-5">								
 
                         <?php
 				    	$where = '   ';  
 						?>
 
-                        <table class="table style-1 tbl-listings">
-                            <thead>
-                                <tr role="row">
-                                    <th>Id</th>
-									<th>Product Image</th>
-									<th>Product Category</th>
-                                    <th>Product Code</th>
-                                    <th>Product Name</th>
-                                    <th>Product colour</th>
-                                    <th>Operations</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
                                 <?php
 								
-						/*		 if($_REQUEST['todate']!=""  || $_REQUEST['fromdate']!=""){
-				 
-										$fromdate=  $_REQUEST['fromdate']; 
-										$todate=  $_REQUEST['todate']; 
-										
-										
-										if($fromdate==""){  $fromdate = '1970-01-01'; }
-										if($todate==""){  $todate = '2030-01-01';  }
-										
-										
-										 $where .=' AND DATE(`created_date`) >= DATE("'.date("Y-m-d",strtotime($fromdate)).'") AND  DATE(`created_date`) <= DATE("'.date("Y-m-d",strtotime($todate)).'") ';
-									  } 
-									  
-									  
-									  if($_REQUEST['search']!=""){
-										 
-										$where .=' and (full_name LIKE "%'.$_REQUEST['search'].'%"  OR  mobile_no LIKE "%'.$_REQUEST['search'].'%"  OR   email_address LIKE "%'.$_REQUEST['search'].'%"    ) ';
-										 
-									 } */
-									
-
-
 								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "product where 1=1 $where order by id desc";
 
 								$r = $crud->getData($sql);
@@ -106,48 +81,41 @@ include_once 'DbConfig.php';
 									
 								?>
 
-                                <tr>
-								    <td>
-									<?php echo $obj['id'];  ?>
-                                    </td>
-									<td>
+                         
+									<div class ="col-lg-3">
+										<form action="manage-cart.php" method = "post">
+										<div class ="card">
+										<img src=<?php echo $obj['product_image']?> class="">
+										<div class = "card-body text-center">
+											<h5 class ="card-title"><?php echo $obj['product_name'];  ?></h5>
+											<p class= "card-text">&#8377;: 00000<span class="text-success">(10 % off)</span></p>
+											
+
+											<i class="fa-solid fa-star"></i>
+											<i class="fa-solid fa-star"></i>
+											<i class="fa-solid fa-star"></i>
+											<i class="fa-solid fa-star"></i>
+											<i class="fa-regular fa-star" style='color: blue'></i>
+											<p class="card-text"><?php echo $obj['product_colour'];  ?></p>
+											<input type="submit" class="btn btn-primary" name="cartbtn" value="Add to Cart">
+											
+										</div>
+										</div>
+										</form>
+									</div>
+								
 										
-									<img src=<?php echo $obj['product_image']?>>
-									</td>
 									
-									<td>
-									<?php echo $obj['product_category'];  ?>
-									</td>
+									
+				
 									<?php
 								/*	echo"<pre>";
 									print_r($obj['product_image']);
 									echo"</pre>";
 										die(); */
 									?>
-                                    <td>
-									<?php echo $obj['product_code'];  ?>
-                                    </td>
-									
-                                    <td>
 
-									<?php echo $obj['product_name'];  ?>
-                                    </td>
-
-
-                                    <td>
-									<?php echo $obj['product_colour'];  ?>
-                                    </td>
-
-									<td>
-										
-									 <a href ="update-product.php?id=<?php echo $obj[id]; ?>" class="btn btn-success mr-3">Update
-								
-									 <a href ="delete-product.php?id=<?php echo $obj[id]; ?>" class="btn btn-danger">Delete
-									</td>
-                                
-
-
-                                </tr>
+                               
 
                                 <?php }
 								$range = RANGE;
@@ -225,19 +193,10 @@ include_once 'DbConfig.php';
 
                             </tbody>
                         </table>
+						</div>
+						</div>
+                 
 
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-
-    </section>
-
-
-
-    <?php
+	<?php
 	require("admin-footer.php");
 	?>

@@ -174,15 +174,23 @@ ul.pagination {
 		  </li>
       
       <li class="nav-item">
-			<a href="Manage-product.php" class="nav-link <?php if(basename($_SERVER['PHP_SELF'])=='change-password.php'){ echo 'active'; } ?>">
+			<a href="Manage-product.php" class="nav-link <?php if(basename($_SERVER['PHP_SELF'])=='Manage-product.php'){ echo 'active'; } ?>">
 			  <i class="nav-icon fa fa-users"></i>
 			  <p>
 				Manage Product
 			  </p>
 			</a>           
 		  </li>
-		 
-      
+
+      <li class="nav-item">
+			<a href="view-category.php" class="nav-link <?php if(basename($_SERVER['PHP_SELF'])=='category.php'){ echo 'active'; } ?>">
+			  <i class="nav-icon fa fa-eye"></i>
+			  <p> 
+				Categories
+			  </p>
+			</a>           
+		  </li>
+
          
       </ul>
       </nav>
