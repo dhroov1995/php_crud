@@ -91,7 +91,7 @@ include_once 'DbConfig.php';
 
 								if ($currentpage < 1) {
 
-									$currentpage = 1;
+									$currentpage = 1;     
 								}
 
 								$offset = ($currentpage - 1) * $rowsperpage;

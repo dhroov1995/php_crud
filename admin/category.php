@@ -79,19 +79,6 @@ die();
                     <input type="submit" class="btn btn-primary" name="submit" value="Submit"></button>
                 </form>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 	require("admin-footer.php");
 	?>

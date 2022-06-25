@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2022 at 05:39 AM
+-- Generation Time: Jun 25, 2022 at 06:33 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -63,7 +63,7 @@ CREATE TABLE `tbl_category` (
 
 INSERT INTO `tbl_category` (`id`, `category_image`, `category_name`) VALUES
 (1, 'images/51OCZXJQ3mL._AC_UL320_.jpg', 'bike'),
-(2, 'images/download1.jpg', 'tv');
+(2, 'images/tv.jpg', 'tv');
 
 -- --------------------------------------------------------
 
@@ -113,11 +113,11 @@ CREATE TABLE `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`id`, `product_image`, `product_category`, `product_code`, `product_name`, `product_colour`, `created_at`) VALUES
-(31, 'images/istockphoto-898449896-1024x1024.jpg', 'tv', 'sbtv22', 'tv-sm', 'black', '2022-06-21 15:04:56'),
-(32, 'images/download.jpg', 'bike', '2222', 'bike-h', 'blue', '2022-06-21 15:05:06'),
-(33, 'images/tv.jpg', 'tv', 'jdsvsv', 'tv-old', 'brown', '2022-06-21 16:26:54'),
-(34, 'images/product-500x500.jpeg', 'bike', 'new222', 'bike', 'red', '2022-06-22 22:08:40'),
-(35, 'images/tv.jpg', 'tv', 'ss25', 'tv-sm', 'black', '2022-06-22 22:30:51');
+(31, 'images/istockphoto-898449896-1024x1024.jpg', '2', 'sbtv22', 'tv-sm', 'black', '2022-06-21 15:04:56'),
+(32, 'images/download.jpg', '1', '2222', 'bike-h', 'blue', '2022-06-21 15:05:06'),
+(33, 'images/tv.jpg', '2', 'jdsvsv', 'tv-old', 'brown', '2022-06-21 16:26:54'),
+(34, 'images/product-500x500.jpeg', '1', 'new222', 'bike', 'red', '2022-06-22 22:08:40'),
+(35, 'images/tv.jpg', '2', 'ss25', 'tv-sm', 'black', '2022-06-22 22:30:51');
 
 --
 -- Indexes for dumped tables

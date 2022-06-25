@@ -1,9 +1,4 @@
 <?php
-/*if($_SERVER["REQUESTED_METHOD"] == "POST")
-{
-    if(isset($_POST['cartbtn']))
-    {
-
-    }
-}*/
+include_once 'include/DbConfig.php';
+require "header.php";
 ?>
