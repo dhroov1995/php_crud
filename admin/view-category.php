@@ -130,9 +130,10 @@ include_once 'DbConfig.php';
                                     </td>
 
 
-                                   
+								
 
 									<td>
+								
 										
 									 <a href ="update-category.php?id=<?php echo $obj[id]; ?>" class="btn btn-success mr-3">Update
 								

@@ -190,8 +190,23 @@ ul.pagination {
 			  </p>
 			</a>           
 		  </li>
+       <li class="nav-item">
+			<a href="mycart.php" class="nav-link <?php if(basename($_SERVER['PHP_SELF'])=='mycart.php'){ echo 'active'; } ?>">
+			  <i class="nav-icon fa fa-shopping-cart"></i>
+			  <p> 
+			Cart
+			  </p>
+			</a>           
+		  </li>
 
-         
+      <li class="nav-item">
+			<a href="myorder.php" class="nav-link <?php if(basename($_SERVER['PHP_SELF'])=='myorder.php'){ echo 'active'; } ?>">
+			  <i class="nav-icon fa-solid fa-object-group"></i>
+			  <p> 
+			Order
+			  </p>
+			</a>           
+		  </li>
       </ul>
       </nav>
     </div>

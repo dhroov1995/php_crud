@@ -1,9 +1,9 @@
-
-
 <?php require "header.php";
+
 include_once 'include/DbConfig.php';
 ?>
-<html>
+    <!-- Main content -->
+	<html>
 <body style="background-color:white;">
 	
 
@@ -22,7 +22,7 @@ include_once 'include/DbConfig.php';
 	
 	<ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="category.php">category </a>
+        <a class="nav-link" href="category.php">category</a>
       </li>
     </ul>
     <div>
@@ -32,23 +32,21 @@ include_once 'include/DbConfig.php';
 </nav>
 <div class="container mt-5">
 	<div class="row">
-		
-		
 
 
-
-
-
-
+   
 
                         <?php
 				    	$where = '   ';  
 						?>
 
+                       
 
-                                <?php
-								
-								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "product where 1=1 $where order by id desc";
+                                <?php 
+									
+
+
+								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "category where 1=1 $where order by id desc";
 
 								$r = $crud->getData($sql);
 								$totalrecord = $numopen = $numrows = $r[0]['count'];
@@ -76,15 +74,8 @@ include_once 'include/DbConfig.php';
 								}
 
 								$offset = ($currentpage - 1) * $rowsperpage;
-                                
-							/*	echo"<pre>";
-								print_r($_GET['id']);
-								echo"</pre>";
-									die(); */
-									$category_id = $_GET['id'];
 
-
-								$sql = "SELECT * FROM `tbl_product` WHERE product_category =$category_id";
+								$sql = "SELECT * FROM " . TABLE_PREFIX . "category where 1=1 $where order by id desc LIMIT " . $offset . ", " . $rowsperpage . "";
 
 								
 								$result = $crud->getData($sql);
@@ -94,42 +85,35 @@ include_once 'include/DbConfig.php';
 									
 								?>
 
-                         
-								
-
-											<div class="col-lg-3">
-	<form action="product-detail.php" method="POST">
-	<div class="card">
-  <img src="<?php echo $obj['product_image']?>">
-  <div class="card-body text-center">
-    <h5 class="card-title"><?php echo $obj['product_name'];  ?></h5>
-    <p class="card-text">
-	<p class= "card-text">&#8377;: 00000<span class="text-success">(10 %  off)</span></p>
-	<i class="fa-solid fa-star"></i>
-											<i class="fa-solid fa-star"></i>
-											<i class="fa-solid fa-star"></i>
-											<i class="fa-solid fa-star"></i>
-											<i class="fa-regular fa-star" style='color: blue'></i>
-	</p>
-    <input type="submit" class="btn btn-primary" name="cartbtn" value="Add to Cart"></a>
-	
-  </div>
-</div>
-</form>
-</div>								
-								
+                                
+								    
+                                      <div class ="col-lg-3">
+										<form action="" method = "post">
+										<div class ="card">
+										<img src=<?php echo $obj['category_image']?> class="">
+										<div class = "card-body text-center">
+											<h5 class ="card-title"><?php echo $obj['category_name'];  ?></h5>
+											
+											
+											
+											<a href="product.php?id=<?php echo $obj[id]; ?>" class="btn btn-primary">View More</a>
+											<input type="hidden"  name="cartbtn" value="">
+											
+										</div>
+										</div>
+										</form>
 										
+									</div>
 									
 									
-				
 									<?php
 								/*	echo"<pre>";
 									print_r($obj['product_image']);
 									echo"</pre>";
 										die(); */
 									?>
-
-                               
+                                   
+								
 
                                 <?php }
 								$range = RANGE;
@@ -192,25 +176,28 @@ include_once 'include/DbConfig.php';
 												}
 
 
-											}?>
+												?>
                                         </ul>
                                     </td>
                                 </tr>
 
                                 <?php
-								
+								}
 
 								if ($totalrecord <= 0) {
 									echo "<tr><td colspan='9'><h4  class='text-center'>No record</h4></td></tr>";
 								}
 								?>
 
-                           
-						</div>
-						</div>
-						</body>
-</html>
+                            </tbody>
+                        </table>
 
-	<?php
+                        </div>
+
+</div>
+
+
+
+    <?php
 	require("admin-footer.php");
 	?>

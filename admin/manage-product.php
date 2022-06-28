@@ -45,27 +45,7 @@ include_once 'DbConfig.php';
 
                                 <?php
 								
-						/*		 if($_REQUEST['todate']!=""  || $_REQUEST['fromdate']!=""){
-				 
-										$fromdate=  $_REQUEST['fromdate']; 
-										$todate=  $_REQUEST['todate']; 
-										
-										
-										if($fromdate==""){  $fromdate = '1970-01-01'; }
-										if($todate==""){  $todate = '2030-01-01';  }
-										
-										
-										 $where .=' AND DATE(`created_date`) >= DATE("'.date("Y-m-d",strtotime($fromdate)).'") AND  DATE(`created_date`) <= DATE("'.date("Y-m-d",strtotime($todate)).'") ';
-									  } 
-									  
-									  
-									  if($_REQUEST['search']!=""){
-										 
-										$where .=' and (full_name LIKE "%'.$_REQUEST['search'].'%"  OR  mobile_no LIKE "%'.$_REQUEST['search'].'%"  OR   email_address LIKE "%'.$_REQUEST['search'].'%"    ) ';
-										 
-									 } */
-									
-
+					
 
 								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "product where 1=1 $where order by id desc";
 
@@ -85,7 +65,7 @@ include_once 'DbConfig.php';
 								}
 
 								if ($currentpage > $totalpages) {
-
+ 
 									$currentpage = $totalpages;
 								}
 

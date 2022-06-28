@@ -1,54 +1,51 @@
+<?php require("admin-header.php");
+include_once 'DbConfig.php';
 
-
-<?php require "header.php";
-include_once 'include/DbConfig.php';
 ?>
-<html>
-<body style="background-color:white;">
-	
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <div class="heds-new">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="product.php">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-    </ul>
-	
-	<ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="category.php">category </a>
-      </li>
-    </ul>
-    <div>
-		<a href="mycart.php" class="btn btn-outline-success">My cart(0)</a>
-	</div>
-  </div>
-</nav>
-<div class="container mt-5">
-	<div class="row">
-		
-		
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-
-
-
+    <!-- Main content -->
+    <section class="content nw-list">
+        <div class="row d-flex align-items-stretch">
+            <div class="col-lg-12">
+                <div class="card-body listing-list">
+                    <div class="table-tabs w-100 float-left">
 
 
                         <?php
 				    	$where = '   ';  
 						?>
 
+                        <table class="table style-1 tbl-listings">
+                            <thead>
+                                <tr role="row">
+                                    <th>Id</th>
+									<th>Cart id</th>
+									<th>Product id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
                                 <?php
 								
-								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "product where 1=1 $where order by id desc";
+						
+									
+
+
+								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "cart where 1=1 $where order by id desc";
 
 								$r = $crud->getData($sql);
 								$totalrecord = $numopen = $numrows = $r[0]['count'];
@@ -72,19 +69,12 @@ include_once 'include/DbConfig.php';
 
 								if ($currentpage < 1) {
 
-									$currentpage = 1;
+									$currentpage = 1;     
 								}
 
 								$offset = ($currentpage - 1) * $rowsperpage;
-                                
-							/*	echo"<pre>";
-								print_r($_GET['id']);
-								echo"</pre>";
-									die(); */
-									$category_id = $_GET['id'];
 
-
-								$sql = "SELECT * FROM `tbl_product` WHERE product_category =$category_id";
+								$sql = "SELECT * FROM " . TABLE_PREFIX . "cart where 1=1 $where order by id desc LIMIT " . $offset . ", " . $rowsperpage . "";
 
 								
 								$result = $crud->getData($sql);
@@ -94,42 +84,25 @@ include_once 'include/DbConfig.php';
 									
 								?>
 
-                         
-								
-
-											<div class="col-lg-3">
-	<form action="product-detail.php" method="POST">
-	<div class="card">
-  <img src="<?php echo $obj['product_image']?>">
-  <div class="card-body text-center">
-    <h5 class="card-title"><?php echo $obj['product_name'];  ?></h5>
-    <p class="card-text">
-	<p class= "card-text">&#8377;: 00000<span class="text-success">(10 %  off)</span></p>
-	<i class="fa-solid fa-star"></i>
-											<i class="fa-solid fa-star"></i>
-											<i class="fa-solid fa-star"></i>
-											<i class="fa-solid fa-star"></i>
-											<i class="fa-regular fa-star" style='color: blue'></i>
-	</p>
-    <input type="submit" class="btn btn-primary" name="cartbtn" value="Add to Cart"></a>
-	
-  </div>
-</div>
-</form>
-</div>								
-								
+                                <tr>
+								    <td>
+									<?php echo $obj['id'];  ?>
+                                    </td>
+									<td>
 										
+									<?php echo $obj['cart_id']?>
+									</td>
 									
-									
-				
+									<td>
+									<?php echo $obj['product_id'];  ?>
+									</td>
 									<?php
 								/*	echo"<pre>";
 									print_r($obj['product_image']);
 									echo"</pre>";
 										die(); */
 									?>
-
-                               
+                                </tr>
 
                                 <?php }
 								$range = RANGE;
@@ -192,25 +165,34 @@ include_once 'include/DbConfig.php';
 												}
 
 
-											}?>
+												?>
                                         </ul>
                                     </td>
                                 </tr>
 
                                 <?php
-								
+								}
 
 								if ($totalrecord <= 0) {
 									echo "<tr><td colspan='9'><h4  class='text-center'>No record</h4></td></tr>";
 								}
 								?>
 
-                           
-						</div>
-						</div>
-						</body>
-</html>
+                            </tbody>
+                        </table>
 
-	<?php
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+
+
+    <?php
 	require("admin-footer.php");
 	?>
