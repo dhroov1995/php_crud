@@ -35,7 +35,7 @@ include_once 'DbConfig.php';
                                     <th>Id</th>
 									<th>Product id</th>
                                     <th>Order id</th>
-                                    <th>Order by</th>
+                                    <th>User id</th>
                                     <th>Order status</th>
                                 </tr>
                             </thead>
@@ -100,7 +100,7 @@ include_once 'DbConfig.php';
 									</td>
 									
                                     <td>
-									<?php echo $obj['order_by'];  ?>
+									<?php echo $obj['user_id'];  ?>
 									</td>
 
                                     <td>

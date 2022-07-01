@@ -26,7 +26,7 @@ include_once 'include/DbConfig.php';
       </li>
     </ul>
     <div>
-		<a href="mycart.php" class="btn btn-outline-success">My cart(0)</a>
+		<a href="mycart.php" class="btn btn-outline-success">My cart</a>
 	</div>
   </div>
 </nav>
@@ -34,12 +34,6 @@ include_once 'include/DbConfig.php';
 	<div class="row">
 		
 		
-
-
-
-
-
-
 
                         <?php
 				    	$where = '   ';  
@@ -97,37 +91,42 @@ include_once 'include/DbConfig.php';
                          
 								
 
-											<div class="col-lg-3">
-	<form action="product-detail.php" method="POST">
+											<div class="col-lg-4">
+	<form action="product.php?id=<?php echo $category_id?>" method="POST">
 	<div class="card">
-  <img src="<?php echo $obj['product_image']?>">
+	
+   
+  <a href = "product-detail.php"><img src="<?php echo $obj['product_image']?>" height="200px" width="150px"></a>
   <div class="card-body text-center">
-    <h5 class="card-title"><?php echo $obj['product_name'];  ?></h5>
+ 
+    <h5 class="card-title"><?php echo $obj['product_name'];  ?></h5>  
     <p class="card-text">
-	<p class= "card-text">&#8377;: 00000<span class="text-success">(10 %  off)</span></p>
+	<p class= "card-text">&#8377;: 00000<span class="text-success">(10 %  off)</span> </p>
 	<i class="fa-solid fa-star"></i>
 											<i class="fa-solid fa-star"></i>
 											<i class="fa-solid fa-star"></i>
 											<i class="fa-solid fa-star"></i>
 											<i class="fa-regular fa-star" style='color: blue'></i>
 	</p>
-    <input type="submit" class="btn btn-primary" name="cartbtn" value="Add to Cart"></a>
+	<input type ="hidden" name="user_id" value="<?php echo $obj['user_id']?>" >
+	<input type ="hidden" name="product_id" value="<?php echo $obj['product_id']?>" >
+    <input type="submit" class="btn btn-primary" name="cartbtn" value="Add to Cart">
 	
   </div>
 </div>
 </form>
 </div>								
-								
-										
-									
-									
-				
-									<?php
+                              <?php
 								/*	echo"<pre>";
 									print_r($obj['product_image']);
 									echo"</pre>";
 										die(); */
-									?>
+									?>	
+										
+									
+									
+				
+								
 
                                
 
@@ -208,6 +207,7 @@ include_once 'include/DbConfig.php';
                            
 						</div>
 						</div>
+						
 						</body>
 </html>
 

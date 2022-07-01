@@ -2,3 +2,7 @@ backend
 category,product,cart,order
 frontend  -  category,product,cart,Place order
 deadline 02-07-22
+
+
+----------------------------
+date 30-06-22 user login and registration complete

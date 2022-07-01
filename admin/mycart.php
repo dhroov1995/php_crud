@@ -33,7 +33,7 @@ include_once 'DbConfig.php';
                             <thead>
                                 <tr role="row">
                                     <th>Id</th>
-									<th>Cart id</th>
+									<th>User id</th>
 									<th>Product id</th>
                                 </tr>
                             </thead>
@@ -90,7 +90,7 @@ include_once 'DbConfig.php';
                                     </td>
 									<td>
 										
-									<?php echo $obj['cart_id']?>
+									<?php echo $obj['user_id']?>
 									</td>
 									
 									<td>
@@ -100,7 +100,7 @@ include_once 'DbConfig.php';
 								/*	echo"<pre>";
 									print_r($obj['product_image']);
 									echo"</pre>";
-										die(); */
+										die(); */   
 									?>
                                 </tr>
 
