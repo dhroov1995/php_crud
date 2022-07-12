@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product_code = $crud->format_data($_POST['product_code']);
     $product_name = $crud->format_data($_POST['product_name']);
     $product_colour = $crud->format_data($_POST['product_colour']);
-    
+     $product_price = $crud->format_data($_POST['product_price']);
    
    $update_product = array();
    $id = $_GET['id'];
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$update_product['product_code'] = $product_code;
     $update_product['product_name'] = $product_name;
     $update_product['product_colour'] = $product_colour;
+	$update_product['product_price'] = $product_price;
 //	$update_product['created_date'] = date('Y-m-d H:i:s'); 
 
 $sql_update="UPDATE  `".TABLE_PREFIX."product` SET  ";
@@ -112,6 +113,10 @@ echo"<pre>";
                         <div class="mb-3 col-md-6">
                             <label for="exampleInputPassword1" class="form-label">Product colour</label>
                             <input type="text" name="product_colour" class="form-control" value="<?php echo $data['product_colour'];?>" class="inputs-prgnis required">
+                        </div> 
+						<div class="mb-3 col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Product price</label>
+                            <input type="text" name="product_price" class="form-control" value="<?php echo $data['product_price'];?>" class="inputs-prgnis required">
                         </div> 
 
                         <input type="submit" class="btn btn-primary" name="submit" value="Submit"></button>

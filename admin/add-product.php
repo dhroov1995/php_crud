@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product_code = $crud->format_data($_POST['product_code']);
     $product_name = $crud->format_data($_POST['product_name']);
     $product_colour = $crud->format_data($_POST['product_colour']);
-    
+    $product_price = $crud->format_data($_POST['product_price']);
     
   
     if ($product_code == '' || $product_name == ''|| $product_colour == '') {
@@ -26,6 +26,7 @@ $insert_product = array();
 	$insert_product['product_code'] = $product_code;
     $insert_product['product_name'] = $product_name;
     $insert_product['product_colour'] = $product_colour;
+	$insert_product['product_price'] = $product_price;
 //	$insert_product['created_date'] = date('Y-m-d H:i:s'); 
 
 
@@ -79,26 +80,31 @@ echo"</pre>";
                             </select>
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="exampleInputEmail1" class="form-label">Product code</label>
+                            <label for="" class="form-label">Product code</label>
                             <input type="text" name="product_code" class="form-control" value="<?php if (isset($_POST['product_code'])) {
                                                                                           echo $last_id['product_code'];
                                                                                         } ?>" class="inputs-prgnis required"> 
 
                         </div>
                        <div class="mb-3 col-md-6">
-                            <label for="exampleInputPassword1" class="form-label">Product name</label>
+                            <label for="" class="form-label">Product name</label>
                             <input type="text" name="product_name" class="form-control" value="<?php if (isset($_POST['product_name'])) {
                                                                                           echo $last_id['product_name'];
                                                                                         } ?>" class="inputs-prgnis required">
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="exampleInputPassword1" class="form-label">Product colour</label>
+                            <label for="" class="form-label">Product colour</label>
                             <input type="text" name="product_colour" class="form-control" value="<?php if (isset($_POST['product_colour'])) {
                                                                                           echo $last_id['product_colour'];
                                                                                         } ?>" class="inputs-prgnis required">
                         </div> 
-
+                            <div class="mb-3 col-md-6">
+                            <label for="" class="form-label">Product price</label>
+                            <input type="text" name="product_price" class="form-control" value="<?php if (isset($_POST['product_price'])) {
+                                                                                          echo $last_id['product_price'];
+                                                                                        } ?>" class="inputs-prgnis required">
+                        </div> 
                         <input type="submit" class="btn btn-primary" name="submit" value="Submit"></button>
                     </form>
                 </div>

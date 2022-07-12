@@ -16,7 +16,7 @@ include_once 'include/DbConfig.php';
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="user-login.php">Home</a>
       </li>
     </ul>
 	
@@ -24,12 +24,55 @@ include_once 'include/DbConfig.php';
       <li class="nav-item active">
         <a class="nav-link" href="category.php">category</a>
       </li>
+    </ul>&nbsp;
+	<ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" class="btn btn-success" href="mycart.php">my cart</a>
+      </li>
+    </ul>&nbsp;
+   
+	
+		<i class="nav-icon fa fa-user"></i>hello,
+		
+		<?php
+		session_start();
+		if(isset($_SESSION['user'])){
+		echo $_SESSION['user'];
+		echo"
+		
+		<ul class='navbar-nav mr-4' >
+      <li class='nav-item active'>
+        <a class='nav-link btn btn-primary text-white ' href='user-logout.php'>LogOut</a>
+      </li>
     </ul>
+	&nbsp;&nbsp;
+	<ul class='navbar-nav mr-4' >
+	<li class='nav-item active'>
+	  <a class='nav-link btn btn-info text-white my-3 ' href='user-login.php'>Login</a>
+	</li>
+  </ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
     <div>
-		<a href="mycart.php" class="btn btn-outline-success">My cart(0)</a>
+		";
+	}
+		?>
+		
 	</div>
   </div>
+  <ul class='navbar-nav mr-4' >
+	<li class='nav-item active'>
+		<?php
+		$count=0;
+		if(isset($_SESSION['cart']))
+		{
+			$count=count($_SESSION['cart']);
+		}
+		?>
+	  <a class='nav-link btn btn-success text-white my-3 ' href='mycart.php'>My Cart(<?php echo $count; ?>)</a>
+	</li>
+  </ul>
 </nav>
+
 <div class="container mt-5">
 	<div class="row">
 
@@ -97,7 +140,7 @@ include_once 'include/DbConfig.php';
 											
 											
 											<a href="product.php?id=<?php echo $obj[id]; ?>" class="btn btn-primary">View More</a>
-											<input type="hidden"  name="cartbtn" value="">
+											<input type="hidden"  name="" value="">
 											
 										</div>
 										</div>

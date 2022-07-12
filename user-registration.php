@@ -60,6 +60,8 @@ $last_id= $crud->fnInsert($sql_insert);
             <div class="col-md-6 border border-info m-auto mt-5">
                 <h3 class="text-warning text-center">User Registration</h3>
                 <form action="" method="post">
+
+                
                     <div class="mb-3">
                         <label>UserName</label>
                         <input type="text" name="name" class="form-control" placeholder="Enter your username" required>

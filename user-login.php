@@ -27,7 +27,7 @@ $result = $crud->getData($sql_insert);
 
 if($result)
 {
-    $_SESSION['user'] =$name;
+    $_SESSION['user'] =$name;   
     echo"<script>
     alert('successfully logIn');
     window.location.href='category.php';

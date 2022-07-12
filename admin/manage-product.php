@@ -38,6 +38,7 @@ include_once 'DbConfig.php';
                                     <th>Product Code</th>
                                     <th>Product Name</th>
                                     <th>Product colour</th>
+									<th>Product price</th>
                                     <th>Operations</th>
                                 </tr>
                             </thead>
@@ -118,6 +119,9 @@ include_once 'DbConfig.php';
 									<?php echo $obj['product_colour'];  ?>
                                     </td>
 
+                                     <td>
+									<?php echo $obj['product_price'];  ?>
+                                    </td>
 									<td>
 										
 									 <a href ="update-product.php?id=<?php echo $obj[id]; ?>" class="btn btn-success mr-3">Update

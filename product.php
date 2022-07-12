@@ -2,6 +2,7 @@
 
 <?php require "header.php";
 include_once 'include/DbConfig.php';
+
 ?>
 <html>
 <body style="background-color:white;">
@@ -16,23 +17,62 @@ include_once 'include/DbConfig.php';
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="user-login.php">Home</a>
       </li>
     </ul>
 	
 	<ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="category.php">category </a>
+        <a class="nav-link" href="category.php">category</a>
+      </li>
+    </ul>&nbsp;
+   
+	
+		<i class="nav-icon fa fa-user"></i>hello,
+		
+		<?php
+		session_start();
+		if(isset($_SESSION['user'])){
+		echo $_SESSION['user'];
+		echo"
+		
+		<ul class='navbar-nav mr-4' >
+      <li class='nav-item active'>
+        <a class='nav-link btn btn-primary text-white ' href='user-logout.php'>LogOut</a>
       </li>
     </ul>
+	&nbsp;&nbsp;
+	<ul class='navbar-nav mr-4' >
+	<li class='nav-item active'>
+	  <a class='nav-link btn btn-info text-white my-3 ' href='user-login.php'>Login</a>
+	</li>
+  </ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
     <div>
-		<a href="mycart.php" class="btn btn-outline-success">My cart</a>
+		";
+	}
+		?>
+		
 	</div>
   </div>
+  <ul class='navbar-nav mr-4' >
+	<li class='nav-item active'>
+	<?php
+		$count=0;
+		if(isset($_SESSION['cart']))
+		{
+			$count=count($_SESSION['cart']);
+		}
+		?>
+	  <a class='nav-link btn btn-success text-white my-3 ' href='mycart.php'>My Cart(<?php echo $count; ?>)</a>
+	</li>
+  </ul>
 </nav>
+
 <div class="container mt-5">
 	<div class="row">
-		
+
+
 		
 
                         <?php
@@ -71,9 +111,7 @@ include_once 'include/DbConfig.php';
 
 								$offset = ($currentpage - 1) * $rowsperpage;
                                 
-							/*	echo"<pre>";
-								print_r($_GET['id']);
-								echo"</pre>";
+							/* 
 									die(); */
 									$category_id = $_GET['id'];
 
@@ -89,28 +127,31 @@ include_once 'include/DbConfig.php';
 								?>
 
                          
-								
+							
 
-											<div class="col-lg-4">
-	<form action="product.php?id=<?php echo $category_id?>" method="POST">
+	<div class="col-lg-4">
+	<form action="manage-cart.php" method="post">
 	<div class="card">
 	
    
-  <a href = "product-detail.php"><img src="<?php echo $obj['product_image']?>" height="200px" width="150px"></a>
+  <a href = ""><img src="<?php echo $obj['product_image']?>" height="200px" width="150px"></a>
   <div class="card-body text-center">
  
-    <h5 class="card-title"><?php echo $obj['product_name'];  ?></h5>  
+    <h5 class="card-title"><?php echo $obj['product_name'];  ?></h5>
+	
     <p class="card-text">
-	<p class= "card-text">&#8377;: 00000<span class="text-success">(10 %  off)</span> </p>
+	<p class= "card-text">&#8377;: <?php echo $obj['product_price']?><span class="text-success">(10 %  off)</span> </p>
 	<i class="fa-solid fa-star"></i>
 											<i class="fa-solid fa-star"></i>
 											<i class="fa-solid fa-star"></i>
 											<i class="fa-solid fa-star"></i>
 											<i class="fa-regular fa-star" style='color: blue'></i>
 	</p>
-	<input type ="hidden" name="user_id" value="<?php echo $obj['user_id']?>" >
-	<input type ="hidden" name="product_id" value="<?php echo $obj['product_id']?>" >
-    <input type="submit" class="btn btn-primary" name="cartbtn" value="Add to Cart">
+	<input type="hidden" name="id" value="<?php echo $obj['id'];  ?>">
+	<input type="hidden" name="product_image" value="<?php echo $obj['product_image'];  ?>">
+	<input type="hidden" name="product_name" value="<?php echo $obj['product_name'];  ?>">
+	<input type="hidden" name="product_price" value="<?php echo $obj['product_price'];  ?>">
+    <input type="submit" class="btn btn-primary" name="pcartbtn" value="Add to Cart">
 	
   </div>
 </div>

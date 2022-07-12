@@ -32,11 +32,12 @@ include_once 'DbConfig.php';
                         <table class="table style-1 tbl-listings">
                             <thead>
                                 <tr role="row">
-                                    <th>Id</th>
-									<th>Product id</th>
-                                    <th>Order id</th>
-                                    <th>User id</th>
-                                    <th>Order status</th>
+                                    <th>Order Id</th>
+									<th>Product name</th>
+									<th>Product price</th>
+									<th>Product quantity</th>
+									<th>User Id</th>
+									<th>Order Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,7 +48,7 @@ include_once 'DbConfig.php';
 									
 
 
-								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "order where 1=1 $where order by id desc";
+								$sql = "SELECT COUNT(*) as count  FROM " . TABLE_PREFIX . "order where 1=1 $where order by order_id desc";
 
 								$r = $crud->getData($sql);
 								$totalrecord = $numopen = $numrows = $r[0]['count'];
@@ -76,7 +77,7 @@ include_once 'DbConfig.php';
 
 								$offset = ($currentpage - 1) * $rowsperpage;
 
-								$sql = "SELECT * FROM " . TABLE_PREFIX . "order where 1=1 $where order by id desc LIMIT " . $offset . ", " . $rowsperpage . "";
+								$sql = "SELECT * FROM " . TABLE_PREFIX . "order where 1=1 $where order by order_id desc LIMIT " . $offset . ", " . $rowsperpage . "";
 
 								
 								$result = $crud->getData($sql);
@@ -88,30 +89,33 @@ include_once 'DbConfig.php';
 
                                 <tr>
 								    <td>
-									<?php echo $obj['id'];  ?>
+									<?php echo $obj['order_id'];  ?>
+                                    </td>
+
+									<td>
+									<?php echo $obj['product_name'];  ?>
                                     </td>
 									
-                                    <td>
-									<?php echo $obj['product_id'];  ?>
-									</td>
-                                    
-                                    <td>
-									<?php echo $obj['order_id']?>
+									<td>
+									<?php echo $obj['product_price'];  ?>
+                                    </td>
+
+									<td>
+									<?php echo $obj['product_quantity'];  ?>
+                                    </td>
+									<td>
+										
+									<?php echo $obj['user_id']?>
 									</td>
 									
-                                    <td>
-									<?php echo $obj['user_id'];  ?>
-									</td>
-
-                                    <td>
+									<td>
 									<?php echo $obj['order_status'];  ?>
 									</td>
-
 									<?php
 								/*	echo"<pre>";
 									print_r($obj['product_image']);
 									echo"</pre>";
-										die(); */
+										die(); */   
 									?>
                                 </tr>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2022 at 05:13 AM
+-- Generation Time: Jul 12, 2022 at 06:00 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -53,16 +53,17 @@ INSERT INTO `tbl_adminmaster` (`intAdminID`, `vchEmail`, `vchUserName`, `vchPass
 
 CREATE TABLE `tbl_cart` (
   `id` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  `product_id` varchar(255) NOT NULL
+  `product_id` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_cart`
 --
 
-INSERT INTO `tbl_cart` (`id`, `cart_id`, `product_id`) VALUES
-(1, 10, '0001');
+INSERT INTO `tbl_cart` (`id`, `product_id`, `user_id`) VALUES
+(1, '0001', 1),
+(2, '1', 1);
 
 -- --------------------------------------------------------
 
@@ -118,10 +119,11 @@ INSERT INTO `tbl_contact` (`contact_id`, `full_name`, `mobile_no`, `age`, `email
 --
 
 CREATE TABLE `tbl_order` (
-  `id` int(11) NOT NULL,
-  `product_id` varchar(255) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `order_by` int(11) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `product_price` int(50) NOT NULL,
+  `product_quantity` int(50) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `order_status` enum('success','failed','pending') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -129,8 +131,13 @@ CREATE TABLE `tbl_order` (
 -- Dumping data for table `tbl_order`
 --
 
-INSERT INTO `tbl_order` (`id`, `product_id`, `order_id`, `order_by`, `order_status`) VALUES
-(1, '0001', 100, 1, 'success');
+INSERT INTO `tbl_order` (`order_id`, `product_name`, `product_price`, `product_quantity`, `user_id`, `order_status`) VALUES
+(1, 'tv-sm', 5000, 1, 1, 'success'),
+(2, '', 0, 0, 0, 'success'),
+(3, '', 0, 0, 0, 'success'),
+(4, '', 0, 0, 0, 'success'),
+(5, '', 0, 0, 0, 'success'),
+(6, '', 0, 0, 0, 'success');
 
 -- --------------------------------------------------------
 
@@ -145,6 +152,7 @@ CREATE TABLE `tbl_product` (
   `product_code` varchar(255) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_colour` varchar(255) NOT NULL,
+  `product_price` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -152,12 +160,39 @@ CREATE TABLE `tbl_product` (
 -- Dumping data for table `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`id`, `product_image`, `product_category`, `product_code`, `product_name`, `product_colour`, `created_at`) VALUES
-(1, 'images/istockphoto-898449896-1024x1024.jpg', '2', 'sbtv22', 'tv-sm', 'black', '2022-06-21 15:04:56'),
-(2, 'images/download.jpg', '1', '2222', 'bike-h', 'blue', '2022-06-21 15:05:06'),
-(3, 'images/tv.jpg', '2', 'jdsvsv', 'tv-old', 'brown', '2022-06-21 16:26:54'),
-(4, 'images/product-500x500.jpeg', '1', 'new222', 'bike', 'red', '2022-06-22 22:08:40'),
-(5, 'images/tv.jpg', '2', 'ss25', 'tv-sm', 'black', '2022-06-22 22:30:51');
+INSERT INTO `tbl_product` (`id`, `product_image`, `product_category`, `product_code`, `product_name`, `product_colour`, `product_price`, `created_at`) VALUES
+(1, 'images/istockphoto-898449896-1024x1024.jpg', '2', 'sbtv22', 'tv-sm', 'black', '5000', '2022-06-21 15:04:56'),
+(2, 'images/download.jpg', '1', '2222', 'bike-h', 'blue', '12000', '2022-06-21 15:05:06'),
+(3, 'images/tv.jpg', '2', 'jdsvsv', 'tv-old', 'brown', '2000', '2022-06-21 16:26:54'),
+(4, 'images/product-500x500.jpeg', '1', 'new222', 'bike', 'red', '8000', '2022-06-22 22:08:40'),
+(5, 'images/tv.jpg', '2', 'ss25', 'tv', 'brown', '5000', '2022-06-22 22:30:51'),
+(38, 'images/628e65258c534a60ff59a30890ca63f5.jpg', '1', 'sbgf', 'bike22', 'red', '5000', '2022-07-02 16:38:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_registration`
+--
+
+CREATE TABLE `tbl_registration` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `number` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_registration`
+--
+
+INSERT INTO `tbl_registration` (`id`, `name`, `email`, `number`, `password`) VALUES
+(1, 'ajay', 'as@gmail.com', '11223344', '123456'),
+(2, 'ram', '123@gmail.com', '123252', '112233'),
+(14, 'mohan', 'mohan@gmail.com', '141414141', '112233'),
+(15, 'dhroov', 'abc@gmail.com', '622222', '112233'),
+(16, 'dhroov', 'abc@gmail.com', '622222', '112233'),
+(17, 'akhil', 'ak@gmail.com', '14523652', 'test1234');
 
 -- --------------------------------------------------------
 
@@ -166,21 +201,36 @@ INSERT INTO `tbl_product` (`id`, `product_image`, `product_category`, `product_c
 --
 
 CREATE TABLE `tbl_user` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `state` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL
+  `order_id` int(11) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `number` varchar(100) NOT NULL,
+  `state` varchar(100) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id`, `name`, `email`, `phone`, `state`, `city`, `address`) VALUES
-(1, 'rohit', 'rohit@gmail.com', '1122334455', 'uttarakhand', 'dehradun', 'dehradun 248001');
+INSERT INTO `tbl_user` (`order_id`, `fname`, `email`, `number`, `state`, `city`, `address`, `created_at`) VALUES
+(1, 'rajat', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 17:31:32'),
+(2, 'rajat', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 17:31:44'),
+(3, 'rajat', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 17:32:09'),
+(4, 'harshcvdvs', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 17:46:03'),
+(5, 'harshcvdvs', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 17:56:35'),
+(6, 'harshcvdvs', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 17:58:21'),
+(7, 'harshcvdvs', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 19:09:59'),
+(8, 'harshcvdvs', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 19:35:35'),
+(9, 'harsh mmmm', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 19:35:52'),
+(10, 'harsh mmmm', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 19:37:15'),
+(11, 'harsh mmmm', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 19:39:00'),
+(12, 'harsh mmmm', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 19:39:04'),
+(13, 'harsh mmmm', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 19:39:53'),
+(14, 'harsh mmmm', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 20:19:54'),
+(15, 'harsh mmmm', 'as@gmail.com', '6', 'Uttarakhand', 'Dehradun', 'jkfkldghjrio', '2022-07-11 20:21:18');
 
 --
 -- Indexes for dumped tables
@@ -214,7 +264,7 @@ ALTER TABLE `tbl_contact`
 -- Indexes for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `tbl_product`
@@ -223,10 +273,16 @@ ALTER TABLE `tbl_product`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_registration`
+--
+ALTER TABLE `tbl_registration`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -242,13 +298,13 @@ ALTER TABLE `tbl_adminmaster`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_category`
 --
 ALTER TABLE `tbl_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_contact`
@@ -260,19 +316,25 @@ ALTER TABLE `tbl_contact`
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `tbl_registration`
+--
+ALTER TABLE `tbl_registration`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

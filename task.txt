@@ -6,3 +6,4 @@ deadline 02-07-22
 
 ----------------------------
 date 30-06-22 user login and registration complete
+02-07-22 place order and place order
